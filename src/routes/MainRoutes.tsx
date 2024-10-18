@@ -11,7 +11,7 @@ export default {
   path: '/',
   children: [
     {
-      path: '/',
+      path: '/verde',
       element: <MainLayout />,
       children: [
         {
