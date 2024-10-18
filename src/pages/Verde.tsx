@@ -40,22 +40,23 @@ export default () => {
     onSubmit: () => {}
   })
 
-  useEffect(() => {
-    if (!isValid) return;
-    const [idInstance, apiTokenInstance] = creds.split(':');
-    if (!idInstance || !apiTokenInstance) return;
-    try {
-      setApiClient(whatsAppClient.restAPI({idInstance, apiTokenInstance}))
-    } catch (ignore) {}
-  }, [creds]);
-
   const {
     errors,
     touched,
     getFieldProps,
     setFieldValue,
-    isValid
+    isValid,
+    values
   } = formik;
+
+  useEffect(() => {
+    if (!isValid) return;
+    const [idInstance, apiTokenInstance] = values.creds.split(':');
+    if (!idInstance || !apiTokenInstance) return;
+    try {
+      setApiClient(whatsAppClient.restAPI({idInstance, apiTokenInstance}))
+    } catch (ignore) { console.warn(ignore) }
+  }, [isValid, creds, values]);
 
   return (
     <Card
