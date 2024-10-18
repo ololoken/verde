@@ -16,7 +16,7 @@ export default () => {
           return;
         default:
           console.error(error);
-          navigate('/error');
+          navigate('/verde/error');
       }
     };
     onerror = (message, file, lineNo, columnNo, error) => {

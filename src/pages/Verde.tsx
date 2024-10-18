@@ -43,7 +43,10 @@ export default () => {
   useEffect(() => {
     if (!isValid) return;
     const [idInstance, apiTokenInstance] = creds.split(':');
-    setApiClient(whatsAppClient.restAPI({ idInstance, apiTokenInstance }))
+    if (!idInstance || !apiTokenInstance) return;
+    try {
+      setApiClient(whatsAppClient.restAPI({idInstance, apiTokenInstance}))
+    } catch (ignore) {}
   }, [creds]);
 
   const {
